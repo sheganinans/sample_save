@@ -30,4 +30,5 @@ async def sample(s: Sample):
     with open("./err.log", "a+") as errs:
       errs.write(str(e))
       errs.write("\n")
-    return {"err": str(e), "sample" : s}
+    s.img = ""
+    return {"err": str(e), "sample": s}
