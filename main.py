@@ -24,10 +24,10 @@ async def sample(s: Sample):
       f.write(img)
     with con:
       con.cursor().execute(f"""insert into samples (seed, vector, md5) values \
-                                ({s.seed},"{str(s.vector)}","{md5}")""")
+                                ({s.seed},"{s.vector}","{md5}")""")
     return {"ok": "!"}
   except Exception as e:
     with open("./err.log", "a+") as errs:
       errs.write(str(e))
       errs.write("\n")
-    return {"err": str(e)}
+    return {"err": str(e), "sample" : s}
