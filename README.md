@@ -1,6 +1,6 @@
-# Sample Saver Backend
+# Vector Explorer Backend
 
-Need to save samples of your image model's outputs? SSB is here to help!
+Need to save samples of your image model's outputs? VEB is here to help!
 
 ## Setup
 
