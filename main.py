@@ -18,15 +18,15 @@ class Sample(BaseModel):
 @app.post("/sample")
 async def sample(s: Sample):
   try:
-    img = base64.b64decode(s.img)
-    # TODO:
-    #vec = base64.b64decode(s.vec)
-    #vec = struct.unpack("f", vec)
-    #if len(vec) != 512:
-    #  raise Exception(f"Expecting length 512, got: {len(vec)}")
+    vec = base64.b64decode(s.vec)
+    vec = struct.unpack("f", vec)
+    if len(vec) != 512:
+      raise Exception(f"Expecting length 512, got: {len(vec)}")
     #if not all([x >= -1. and x <= 1. for x in vec]):
     #  # TODO: Better error.
     #  raise Exception(f"Data Malformed.")
+
+    img = base64.b64decode(s.img)
     md5 = hashlib.md5(img).hexdigest()
     with open(f"./samples/{md5}.png", "wb") as f:
       f.write(img)
