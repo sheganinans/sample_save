@@ -34,7 +34,7 @@ async def sample(s: Sample):
     with open(f"./samples/{md5}.png", "wb") as f:
       f.write(img)
     with con:
-      con.cursor().execute("insert into samples (seed, vector, md5) values (?,?,?)", (s.seed, s.vector, md5))
+      con.cursor().execute("insert into samples (seed, vector, md5) values (?,?,?)", (s.seed, str(s.vector), md5))
     return {"ok": "!"}
   except Exception as e:
     with open("./err.log", "a+") as errs:
