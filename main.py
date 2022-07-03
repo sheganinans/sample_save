@@ -38,7 +38,7 @@ async def sample(s: Samples):
         md5 = hashlib.md5(base64.b64decode(img)).hexdigest()
         with open(f"./samples/{md5}.png", "wb") as f:
           f.write(img)
-        con.cursor().execute("insert into sample (seed, md5, vector) values (?,?,?)", (seed, md5, vec_id))
+        con.cursor().execute("insert into sample (seed, md5, vector) values (?,?,?)", (str(seed), md5, vec_id))
     return {"ok": "!"}
   except Exception as e:
     with open("./err.log", "a+") as errs:
