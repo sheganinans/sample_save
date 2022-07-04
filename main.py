@@ -35,7 +35,7 @@ async def sample(s: Samples):
       con.cursor().execute(insert_into_vector, tuple(s.vector))
       vec_id = con.last_insert_rowid()
       for seed, img in imgs.items():
-        md5 = hashlib.md5(base64.b64decode(img)).hexdigest()
+        md5 = hashlib.md5(img).hexdigest()
         with open(f"./samples/{md5}.png", "wb") as f:
           f.write(img)
         con.cursor().execute("insert into sample (seed, md5, vector) values (?,?,?)", (str(seed), md5, vec_id))
